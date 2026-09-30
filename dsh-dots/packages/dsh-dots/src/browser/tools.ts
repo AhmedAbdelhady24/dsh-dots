@@ -16,7 +16,7 @@ export function defineBrowserTools(driver: BrowserDriver): Tool[] {
       name: "browser.screenshot",
       description: "Capture the current browser screen.",
       parameters: {},
-      output: { schema: { type: "string" }, render: (_a, v) => [{ type: "image", source: { type: "base64", data: v, media_type: "image/png" } }] },
+      output: { schema: { type: "string" }, render: (_a, _v) => [{ type: "text", text: "screenshot captured and streamed to the live view" }] },
       execute: async () => (await driver.screenshot()).dataUrl,
     }),
     defineTool({
