@@ -1,3 +1,5 @@
+import { join, isAbsolute } from "node:path"
+import { homedir } from "node:os"
 import z from "@deepseek-ai/schemastery"
 import type { Context } from "@deepseek-ai/cordis"
 import { DotStore } from "./store.js"
@@ -14,8 +16,10 @@ export const Config = z.object({
 })
 
 export function apply(ctx: Context, config: ReturnType<typeof Config>) {
-  const data = loadDots(config.dataPath)
-  const store = new DotStore(data, () => saveDots(config.dataPath, data))
+  const base = process.env.DSH_HOME ?? join(homedir(), ".dsh")
+  const dataPath = isAbsolute(config.dataPath) ? config.dataPath : join(base, config.dataPath)
+  const data = loadDots(dataPath)
+  const store = new DotStore(data, () => saveDots(dataPath, data))
   ctx.provide("dots", store)
   const driver = createBrowserDriver("dots-default", { headless: config.headless })
   for (const tool of defineBrowserTools(driver)) ctx.tools.register(tool)

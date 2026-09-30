@@ -16,6 +16,9 @@ importers:
       '@deepseek-ai/schemastery':
         specifier: ^3.18.1
         version: 3.18.4
+      playwright:
+        specifier: ^1.63.0
+        version: 1.63.0
     devDependencies:
       '@deepseek-ai/dsh-tools':
         specifier: 0.2.0-rc.2
@@ -23,9 +26,6 @@ importers:
       '@types/node':
         specifier: ^24.0.0
         version: 24.19.0
-      playwright:
-        specifier: ^1.63.0
-        version: 1.63.0
       tsdown:
         specifier: ^0.22.0
         version: 0.22.14(typescript@5.9.3)
