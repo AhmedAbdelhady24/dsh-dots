@@ -1,1 +1,1 @@
-{"name":"dsh-dots","version":"0.1.0","type":"module","scripts":{"test":"vitest run","typecheck":"tsc --noEmit"},"devDependencies":{"@deepseek-ai/dsh-tools":"0.2.0-rc.2","@types/node":"^24.0.0","typescript":"^5.7.0","vitest":"^3.2.0"}}
+{"name":"dsh-dots","version":"0.1.0","type":"module","scripts":{"test":"vitest run","typecheck":"tsc --noEmit"},"devDependencies":{"@deepseek-ai/dsh-tools":"0.2.0-rc.2","@types/node":"^24.0.0","playwright":"^1.63.0","typescript":"^5.7.0","vitest":"^3.2.0"}}
