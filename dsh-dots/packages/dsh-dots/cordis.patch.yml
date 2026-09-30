@@ -1,2 +1,4 @@
 # dsh-dots host bundle patch.
-[]
+- insert:
+    - id: dsh-dots
+      name: 'dsh-dots'
