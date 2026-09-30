@@ -6,7 +6,9 @@ export function toScheduleCreate(spec: ScheduleSpec, title: string): Record<stri
   switch (selector.kind) {
     case "after_seconds": return { ...base, after_seconds: selector.seconds }
     case "at": return { ...base, at: selector.instant }
-    case "every_seconds": return { ...base, every_seconds: selector.seconds }
+    case "every_seconds":
+      if (selector.seconds < 60) throw new TypeError("every_seconds must be at least 60 seconds")
+      return { ...base, every_seconds: selector.seconds }
     case "daily": return { ...base, daily: { time: selector.time, time_zone: selector.timeZone } }
     case "weekly": return { ...base, weekly: { time: selector.time, time_zone: selector.timeZone, weekdays: selector.weekdays } }
     case "cron": return { ...base, cron: { expression: selector.expression, time_zone: selector.timeZone } }

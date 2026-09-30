@@ -24,4 +24,10 @@ describe("DotStore", () => {
     const s = new DotStore({ dots: [] })
     expect(() => s.update("missing", { name: "x" })).toThrow(/not found/)
   })
+  it("rejects invalid names on update", () => {
+    const s = new DotStore({ dots: [] })
+    const d = s.create(sample)
+    expect(() => s.update(d.id, { name: "   " })).toThrow(/non-empty|at most 120/)
+    expect(() => s.update(d.id, { name: "x".repeat(121) })).toThrow(/120/)
+  })
 })
