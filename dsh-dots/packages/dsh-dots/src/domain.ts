@@ -11,7 +11,7 @@ export type ScheduleSelector =
 export interface ScheduleSpec { selector: ScheduleSelector; prompt: string }
 
 export interface ApprovalRule {
-  /** Tool action namespace, e.g. "browser.click", "email.send" */
+  /** Tool action namespace, e.g. "browser_click", "email_send" */
   action: string
   policy: "ask" | "allow"
 }

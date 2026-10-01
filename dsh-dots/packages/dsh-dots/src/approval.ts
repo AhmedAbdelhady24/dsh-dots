@@ -1,6 +1,6 @@
 import type { ApprovalRule } from "./domain.js"
 
-const RISKY_PREFIXES = ["browser.", "email.", "payment.", "post.", "send."]
+const RISKY_PREFIXES = ["browser_", "email_", "payment_", "post_", "send_"]
 
 export function policyFor(action: string, rules: ApprovalRule[]): "ask" | "allow" {
   const hit = rules.find((r) => r.action === action)

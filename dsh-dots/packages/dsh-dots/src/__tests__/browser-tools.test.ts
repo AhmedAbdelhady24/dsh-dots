@@ -17,8 +17,8 @@ describe("defineBrowserTools", () => {
     const tools = defineBrowserTools(noop)
     const names = tools.map((t) => t.name)
     expect(names).toEqual([
-      "browser.navigate", "browser.screenshot", "browser.extract",
-      "browser.click", "browser.type", "browser.take_over", "browser.hand_back",
+      "browser_navigate", "browser_screenshot", "browser_extract",
+      "browser_click", "browser_type", "browser_take_over", "browser_hand_back",
     ])
   })
 })
