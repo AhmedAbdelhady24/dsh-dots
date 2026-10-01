@@ -30,14 +30,15 @@ export class DotSessionRunner {
       sessionId,
       meta: { cwd: process.cwd() },
       agentOptions: selection,
-      setup: () => {},
+      setup: (agentCtx) => {
+        const memory = renderMemorySection(dot.memory, dot.name)
+        if (memory) agentCtx.systemPrompt.section({ name: `dots:${dot.id}`, order: 150, text: memory })
+      },
       signal: controller.signal,
     })
     this.handles.set(dot.id, handle)
     try {
       this.ctx.goals.create(handle.agent, { objective: dot.goal })
-      const memory = renderMemorySection(dot.memory, dot.name)
-      if (memory) this.ctx.systemPrompt.section({ name: `dots:${dot.id}`, order: 150, text: memory })
       handle.agent.followup(createUserMessage({ content: [{ type: "text", text: dot.goal }], source: { kind: "user" } }))
       await handle.agent.whenIdle()
     } finally {
